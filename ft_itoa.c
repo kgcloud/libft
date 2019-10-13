@@ -39,6 +39,8 @@ int     ft_long(int n)
         return (10);
 }
 
+
+
 char    *ft_negative(int n,int nb)
 {
     char        *str;
