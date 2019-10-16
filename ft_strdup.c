@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:52:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/08 18:04:44 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 int		ft_strlen(char *src)
 {

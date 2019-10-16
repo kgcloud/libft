@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 13:56:55 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/08 14:39:15 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char    *ft_strrchr(char *str, int a)
+#include "libft.h"
+
+char	*ft_strrchr(char *str, int a)
 {
-	int     i;
-	char    *ret;
-	
+	int		i;
+	char	*ret;
+
 	ret = NULL;
 	i = 0;
 	while (str[i] != '\0')
@@ -25,4 +27,3 @@ char    *ft_strrchr(char *str, int a)
 	}
 	return (ret);
 }
-

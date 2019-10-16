@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strchr.c                                           :+:      :+:    :+:   */
+/*   tolower.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 13:24:24 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/08 14:36:07 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/07 16:20:59 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(char *str, int a)
-{
-	int i;
-	i = 0;
+#include "libft.h"
 
-	while (str[i] != '\0')
-	{
-		if (str[i] == a)
-			return (&str[i]);	
-		i++;
-	}
-	return (NULL);
+int		ft_tolower(char c)
+{
+	if (c >= 65 && c <= 90)
+		c += 32;
+	return (c);
 }

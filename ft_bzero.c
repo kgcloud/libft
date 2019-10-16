@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/09 11:29:37 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/15 16:23:20 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-void    bzero(void *s, size_t n)
+void	bzero(void *s, size_t n)
 {
-    size_t i;
-    char    *t;
+	size_t	i;
+	char	*t;
 
-    i = 0;
-    t =(char*)s;
-
-    while (i < n)
-    {
-        t[i] = 0;
-        i++;
-    }
+	i = 0;
+	t = (char*)s;
+	while (i < n)
+	{
+		t[i] = 0;
+		i++;
+	}
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 09:46:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/07 10:21:04 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include "libft.h"
 
 int		ft_strncmp(char *s1, char *s2, unsigned int n)
 {
@@ -28,13 +27,4 @@ int		ft_strncmp(char *s1, char *s2, unsigned int n)
 				(s2[i] == '\0' && s1[i] != '\0')))
 		return (s1[i] - s2[i]);
 	return (0);
-}
-
-int		main()
-{
-	char *s1 = "je";
-	char *s2 = "j";
-	unsigned int n = 20;
-	
-	printf("%d", ft_strncmp(s1,s2,n));
 }

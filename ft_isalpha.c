@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tolower.c                                          :+:      :+:    :+:   */
+/*   isalpha.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 16:20:59 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/07 16:24:38 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/07 14:24:16 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_tolower(char c)
+#include "libft.h"
+
+int		ft_isalpha(char c)
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+	if (c >= 'a' && 'z' >= c)
+		return (1);
+	if (c >= 'A' && 'Z' >= c)
+		return (1);
+	return (0);
 }
