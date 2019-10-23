@@ -6,7 +6,7 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/21 16:46:02 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 
 	i = 0;
 	t = (char*)s;
-	while (t[i] && i < n)
+	while (i < n)
 	{
 		if (t[i] == c)
 			return (&t[i]);

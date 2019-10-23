@@ -6,13 +6,13 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 02:48:36 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/24 01:10:08 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_long(int n)
+static int		ft_long(int n)
 {
 	if (n < 10)
 		return (1);
@@ -36,21 +36,21 @@ int		ft_long(int n)
 		return (10);
 }
 
-char	*ft_negative(int n, int i, int nb)
+static char		*ft_negative(int n, int nb)
 {
 	char	*str;
 	int		c;
 
-	if (nb != -2147483648)
-		nb = nb * -1;
-	else
+	if (nb == -2147483648)
 	{
-		str = malloc(sizeof(char) * 12);
-		str = "-2147483648";
+		if (!(str = ft_strdup("-2147483648")))
+			return (NULL);
 		return (str);
 	}
+	nb = nb * -1;
 	n = ft_long(nb);
-	str = malloc(sizeof(char) * n + 2);
+	if (!(str = malloc(sizeof(char) * (n + 2))))
+		return (NULL);
 	str[n + 1] = 0;
 	str[0] = '-';
 	while (n > 0)
@@ -63,7 +63,7 @@ char	*ft_negative(int n, int i, int nb)
 	return (str);
 }
 
-char	*ft_itoa(int nb)
+char			*ft_itoa(int nb)
 {
 	char	*str;
 	int		n;
@@ -73,7 +73,7 @@ char	*ft_itoa(int nb)
 	if (nb >= 0)
 	{
 		n = ft_long(nb);
-		if (!(str = malloc(sizeof(char) * n + 1 + (nb < 0))))
+		if (!(str = malloc(sizeof(char) * (n + 1))))
 			return (NULL);
 		str[n] = 0;
 		n--;

@@ -5,17 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 23:51:02 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 03:25:43 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/16 23:19:29 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/24 01:17:39 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_wordcount(char const *s, char c)
+static char		**free_malloc(char **str)
 {
-	int i;
-	int count;
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (0);
+}
+
+static int		ft_count(char const *s, char c)
+{
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -31,10 +45,10 @@ int		ft_wordcount(char const *s, char c)
 	return (count);
 }
 
-int		ft_wordsize(char const *str, char c)
+static int		ft_size(char const *str, char c)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = 0;
@@ -48,24 +62,24 @@ int		ft_wordsize(char const *str, char c)
 	return (len);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**str;
 	int		i;
 	int		j;
 	int		k;
-	size_t	nb_word;
 
 	i = -1;
 	j = 0;
-	nb_word = ft_wordcount(s, c);
-	if (!(str = (char**)malloc(sizeof(char*) * (nb_word + 1))))
+	if (!s || !c)
 		return (NULL);
-	while (nb_word > ++i && !(k = 0))
+	if (!(str = (char**)malloc(sizeof(char*) * (ft_count(s, c) + 1))))
+		return (NULL);
+	while (ft_count(s, c) > ++i && !(k = 0))
 	{
 		if (!(str[i] = (char*)malloc(sizeof(char) *\
-			(ft_wordsize(&s[j], c) + 1))))
-			return (NULL);
+			(ft_size(&s[j], c) + 1))))
+			return (free_malloc(str));
 		while (s[j] == c)
 			j++;
 		while (s[j] != c && s[j])

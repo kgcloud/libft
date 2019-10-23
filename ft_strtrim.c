@@ -6,13 +6,13 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/24 01:02:48 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_len(char *str)
+static int		ft_len(char *str)
 {
 	int i;
 
@@ -24,7 +24,25 @@ int		ft_len(char *str)
 	return (i);
 }
 
-int		cmp(char t, char *s)
+static char		*ft_copie(char *str)
+{
+	char	*nstr;
+	int		i;
+
+	if (!(nstr = malloc(sizeof(char) * ft_len(str) + 1)))
+		return (NULL);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		nstr[i] = str[i];
+		i++;
+	}
+	free(str);
+	nstr[i] = '\0';
+	return (nstr);
+}
+
+static int		cmp(char t, char *s)
 {
 	int	i;
 
@@ -39,7 +57,7 @@ int		cmp(char t, char *s)
 	return (1);
 }
 
-char	*dcm(char *s, char *t, char *str)
+static char		*dcm(char *s, char *t, char *str)
 {
 	int	i;
 	int	z;
@@ -49,7 +67,7 @@ char	*dcm(char *s, char *t, char *str)
 	while (i != 0)
 	{
 		if (z < 0)
-			return (NULL);
+			return (str);
 		if (cmp(t[i], s) == 0)
 		{
 			str[z] = 0;
@@ -59,13 +77,13 @@ char	*dcm(char *s, char *t, char *str)
 		else
 		{
 			str[z + 1] = 0;
-			return (str);
+			return (ft_copie(str));
 		}
 	}
-	return (NULL);
+	return (t);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	char	*t;
 	char	*s;
@@ -77,18 +95,18 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	t = (char*)s1;
 	s = (char*)set;
-	if (!(str = malloc(sizeof(char) * ft_len(t))))
-		return (0);
+	if (!s1 || !set)
+		return (NULL);
+	if (t[0] == '\0' || s[0] == '\0')
+		return (t);
+	if (!(str = malloc(sizeof(char) * (ft_len(t) + 1))))
+		return (NULL);
 	while (t[i])
 	{
 		if (!z && cmp(t[i], s) == 0)
 			i++;
 		else
-		{
-			str[z] = t[i];
-			i++;
-			z++;
-		}
+			str[z++] = t[i++];
 	}
 	str[z] = 0;
 	return (dcm(s, t, str));

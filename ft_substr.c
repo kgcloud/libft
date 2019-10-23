@@ -6,7 +6,7 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/18 00:09:46 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	t = (char*)s;
-	str = malloc(sizeof(char) * len);
+	if (s == NULL)
+		return (NULL);
+	if (!(str = malloc(sizeof(char) * (len + 1))))
+		return (NULL);
 	while (t[start] && i < len)
 	{
 		str[i] = t[start];
 		start++;
 		i++;
 	}
-	str[start] = '\0';
+	str[i] = '\0';
 	return (str);
 }

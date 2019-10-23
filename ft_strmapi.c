@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 00:12:51 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/24 00:59:35 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/24 01:00:15 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_len(char *str)
+static int		ft_len(char *str)
 {
 	int i;
 
@@ -24,21 +24,22 @@ int		ft_len(char *str)
 	return (i);
 }
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char			*ft_strmapi(char const *t, char (*f)(unsigned int, char))
 {
 	char			*str;
 	unsigned int	i;
+	char			*s;
 
-	if (!(str = ft_strnew(ft_len(s))))
+	s = (char*)t;
+	if (!s || !f)
+		return (NULL);
+	if (!(str = malloc(sizeof(char) * (ft_len(s) + 1))))
 		return (NULL);
 	i = 0;
-	if (s && f)
+	while (s[i] != '\0')
 	{
-		while (s[i] != '\0')
-		{
-			str[i] = f(i, s[i]);
-			i++;
-		}
+		str[i] = f(i, s[i]);
+		i++;
 	}
 	str[i] = '\0';
 	return (str);

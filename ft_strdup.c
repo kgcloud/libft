@@ -6,23 +6,11 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:52:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/17 15:33:54 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int		ft_strlen(char *src)
-{
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
 
 char	*ft_strdup(char *src)
 {
@@ -30,7 +18,7 @@ char	*ft_strdup(char *src)
 	char	*new_str;
 
 	i = 0;
-	new_str = malloc(sizeof(char) * ft_strlen(src));
+	new_str = malloc(sizeof(char) * ft_strlen(src) + 1);
 	if (new_str == NULL)
 		return (NULL);
 	while (src[i] != '\0')

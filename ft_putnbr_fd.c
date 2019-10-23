@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 00:24:52 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/16 23:21:17 by cnjuguna          #+#    #+#             */
+/*   Updated: 2019/10/16 23:21:21 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_putnbr_fd(int nb, int fd)
 	if (nb >= 10)
 	{
 		nb = nb / 10;
-		ft_putnbr(nb);
+		ft_putnbr_fd(nb, fd);
 	}
 	write(fd, &n, 1);
 }

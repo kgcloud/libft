@@ -6,7 +6,7 @@
 /*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 18:56:26 by cnjuguna         ###   ########.fr       */
+/*   Updated: 2019/10/17 17:13:19 by cnjuguna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	char	*t;
 
 	i = 0;
-	s = dest;
+	s = (char*)dest;
 	t = (char*)src;
+	if (!n || dest == src)
+		return (dest);
 	while (t[i] && i < n)
 	{
 		s[i] = t[i];
