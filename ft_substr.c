@@ -3,47 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/10 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/24 17:16:00 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:52:03 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 20:55:36 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static unsigned int	ft_len(char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char				*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*t;
-	char	*str;
 	size_t	i;
+	char	*src;
 
 	i = 0;
-	t = (char*)s;
 	if (s == NULL)
 		return (NULL);
-	if (start > ft_len(t))
+	if (ft_strlen(s) < start)
+		len = 0;
+	else if (start + len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	src = malloc((len + 1) * sizeof(*src));
+	if (src == NULL)
 		return (NULL);
-	if (!(str = malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while (t[start] && i < len)
+	while (len > i)
 	{
-		str[i] = t[start];
-		start++;
+		src[i] = s[start];
 		i++;
+		start++;
 	}
-	str[i] = '\0';
-	return (str);
+	src[i] = '\0';
+	return (src);
 }

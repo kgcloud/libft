@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 23:28:11 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 23:28:18 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:44:12 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 18:44:14 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	if (s)
+	if (s == NULL)
+		return ;
+	while (s[i])
 	{
-		while (s[i])
-		{
-			write(fd, &s[i], 1);
-			i++;
-		}
+		write(fd, &s[i], 1);
+		i++;
 	}
 }

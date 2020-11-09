@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 23:27:11 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/24 01:20:24 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:43:24 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 18:43:27 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
+	unsigned int	i;
+	unsigned char	*dest;
+	unsigned char	*source;
 
+	dest = (unsigned char*)dst;
+	source = (unsigned char*)src;
 	if (!len || dst == src)
 		return (dst);
 	if (src < dst)
 	{
 		i = len;
-		while (i > 0)
-		{
-			i--;
-			((char *)dst)[i] = ((char *)src)[i];
-		}
+		while (i-- > 0)
+			dest[i] = source[i];
 	}
 	else
 	{
 		i = 0;
 		while (i < len)
 		{
-			((char *)dst)[i] = ((char *)src)[i];
+			dest[i] = source[i];
 			i++;
 		}
 	}

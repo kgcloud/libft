@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 09:46:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/21 16:36:13 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:48:42 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 20:34:51 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strncmp(const char *str1, const char *str2, unsigned int n)
+int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	unsigned int	i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	unsigned char	*src1;
+	unsigned char	*src2;
 
-	s1 = (unsigned char*)str1;
-	s2 = (unsigned char*)str2;
 	i = 0;
-	if (n == 0)
+	src1 = (unsigned char *)s1;
+	src2 = (unsigned char *)s2;
+	if (((!s1) || (!s2)) && n == 0)
 		return (0);
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0' && i < n - 1)
+	while (src1[i] && src2[i] && i < n)
+	{
+		if (src1[i] != src2[i])
+			return (src1[i] - src2[i]);
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	if (i < n && ((src1[i] == '\0' && src2[i] != '\0') ||
+				(src2[i] == '\0' && src1[i] != '\0')))
+		return (src1[i] - src2[i]);
+	return (0);
 }

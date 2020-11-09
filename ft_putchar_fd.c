@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 23:23:34 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 23:23:49 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:43:41 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 18:43:43 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
+	if (fd < 0)
+		return ;
 	write(fd, &c, 1);
 }

@@ -3,40 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:19:43 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/17 16:55:14 by cnjuguna         ###   ########.fr       */
+/*   Created: 2019/10/08 12:05:12 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 19:06:36 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int					i;
-	int					signe;
-	unsigned long int	digit;
-	unsigned long long	prec;
+	int					neg;
+	unsigned long long	digit;
 
 	i = 0;
 	digit = 0;
-	signe = 1;
-	prec = 0;
+	neg = 1;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' || str[i] == '\t'
-			|| str[i] == '\v' || str[i] == '\f')
+		|| str[i] == '\v' || str[i] == '\f')
 		i++;
 	if (str[i] == '-' || str[i] == '+')
-	{
-		signe = (str[i] == '-') ? -1 : 1;
-		i++;
-	}
+		neg = (str[i++] == '-') ? -1 : 1;
 	while (str[i] > 47 && str[i] < 58)
 	{
 		digit = digit * 10 + (str[i++] - '0');
-		if (digit < prec || digit > 9223372036854775807)
-			return ((signe == -1) ? 0 : -1);
-		prec = digit;
+		if (digit >= 9223372036854775807)
+			return ((neg == -1) ? 0 : -1);
 	}
-	return (digit * signe);
+	return (digit * neg);
 }

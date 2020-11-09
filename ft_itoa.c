@@ -3,89 +3,60 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 02:48:36 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/24 01:10:08 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:41:01 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 19:27:15 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_long(int n)
+static int	ft_intlen(int n)
 {
-	if (n < 10)
+	int		len;
+
+	len = 0;
+	if (n == 0)
 		return (1);
-	else if (n < 100)
-		return (2);
-	else if (n < 1000)
-		return (3);
-	else if (n < 10000)
-		return (4);
-	else if (n < 100000)
-		return (5);
-	else if (n < 1000000)
-		return (6);
-	else if (n < 10000000)
-		return (7);
-	else if (n < 100000000)
-		return (8);
-	else if (n < 1000000000)
-		return (9);
-	else
-		return (10);
-}
-
-static char		*ft_negative(int n, int nb)
-{
-	char	*str;
-	int		c;
-
-	if (nb == -2147483648)
+	if (n < 0)
 	{
-		if (!(str = ft_strdup("-2147483648")))
-			return (NULL);
-		return (str);
+		n = -n;
+		len++;
 	}
-	nb = nb * -1;
-	n = ft_long(nb);
-	if (!(str = malloc(sizeof(char) * (n + 2))))
-		return (NULL);
-	str[n + 1] = 0;
-	str[0] = '-';
 	while (n > 0)
 	{
-		c = nb % 10;
-		str[n] = c + '0';
-		nb = nb / 10;
-		n--;
+		n /= 10;
+		len++;
 	}
-	return (str);
+	return (len);
 }
 
-char			*ft_itoa(int nb)
+char		*ft_itoa(int n)
 {
-	char	*str;
-	int		n;
-	int		c;
+	long int	i;
+	size_t		len;
+	char		*s;
 
-	n = 0;
-	if (nb >= 0)
+	i = (long)n;
+	if (i == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = ft_intlen(i);
+	if (!(s = malloc((len + 1) * sizeof(char *))))
+		return (NULL);
+	if (i == 0)
+		s[len - 1] = 0 + '0';
+	if (i < 0)
 	{
-		n = ft_long(nb);
-		if (!(str = malloc(sizeof(char) * (n + 1))))
-			return (NULL);
-		str[n] = 0;
-		n--;
-		while (n >= 0)
-		{
-			c = nb % 10;
-			str[n] = c + '0';
-			nb = nb / 10;
-			n--;
-		}
-		return (str);
+		s[0] = '-';
+		i = -i;
 	}
-	else
-		return (ft_negative(n, nb));
+	s[len] = '\0';
+	while (i > 0)
+	{
+		len--;
+		s[len] = (i % 10) + '0';
+		i /= 10;
+	}
+	return (s);
 }

@@ -3,111 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/27 23:42:28 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:51:46 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 20:51:20 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_len(char *str)
+static char	*ft_strncpy(char *dest, const char *src, unsigned int n)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (i < n && src[i])
 	{
+		dest[i] = src[i];
 		i++;
 	}
-	return (i);
-}
-
-static char		*ft_copie(char *str)
-{
-	char	*nstr;
-	int		i;
-
-	if (!(nstr = malloc(sizeof(char) * ft_len(str) + 1)))
-		return (NULL);
-	i = 0;
-	while (str[i] != '\0')
+	while (i < n)
 	{
-		nstr[i] = str[i];
+		dest[i] = '\0';
 		i++;
 	}
-	free(str);
-	nstr[i] = '\0';
-	return (nstr);
+	return (dest);
 }
 
-static int		cmp(char t, char *s)
+char		*ft_strtrim(char const *s1, char const *set)
 {
-	int	i;
+	size_t		i;
+	size_t		j;
+	char		*new;
 
 	i = 0;
-	while (s[i])
-	{
-		if (t == s[i])
-			return (0);
-		else
-			i++;
-	}
-	return (1);
-}
-
-static char		*dcm(char *s, char *t, char *str)
-{
-	int	i;
-	int	z;
-
-	i = ft_len(t) - 1;
-	z = ft_len(str) - 1;
-	while (i != 0)
-	{
-		if (z < 0)
-			return (str);
-		if (cmp(t[i], s) == 0)
-		{
-			str[z] = 0;
-			z--;
-			i--;
-		}
-		else
-		{
-			str[z + 1] = 0;
-			return (ft_copie(str));
-		}
-	}
-	return (t);
-}
-
-char			*ft_strtrim(char const *s1, char const *set)
-{
-	char	*t;
-	char	*s;
-	char	*str;
-	int		i;
-	int		z;
-
-	z = 0;
-	i = 0;
-	t = (char*)s1;
-	s = (char*)set;
+	j = 0;
 	if (!s1 || !set)
 		return (NULL);
-	if (t[0] == '\0' || s[0] == '\0')
-		return (t);
-	if (!(str = malloc(sizeof(char) * (ft_len(t) + 1))))
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	j = ft_strlen(s1 + i);
+	if (j)
+		while (s1[j + i - 1] != 0 && ft_strchr(set, s1[j + i - 1]) != 0)
+			j--;
+	if (!(new = malloc(sizeof(char) * j + 1)))
 		return (NULL);
-	while (t[i])
-	{
-		if (!z && cmp(t[i], s) == 0)
-			i++;
-		else
-			str[z++] = t[i++];
-	}
-	str[z] = 0;
-	return (dcm(s, t, str));
+	ft_strncpy(new, s1 + i, j);
+	new[j] = '\0';
+	return (new);
 }

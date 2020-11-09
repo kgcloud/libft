@@ -3,61 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 10:25:08 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/24 00:59:06 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:47:53 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 20:16:47 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_len(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int i;
-	int c;
+	int		i;
+	int		j;
+	char	*dest;
 
+	if (s2 == NULL || s1 == NULL)
+		return (NULL);
+	if (!(dest = malloc((ft_strlen((char*)s1) +
+						ft_strlen((char*)s2)) * sizeof(char*))))
+		return (NULL);
 	i = 0;
-	c = 0;
+	j = 0;
 	while (s1[i])
 	{
+		dest[i] = s1[i];
 		i++;
-		c++;
 	}
-	i = 0;
-	while (s2[i])
+	while (s2[j])
 	{
-		i++;
-		c++;
+		dest[i + j] = s2[j];
+		j++;
 	}
-	return (c);
-}
-
-char			*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*t1;
-	char	*t2;
-	char	*str;
-	int		i;
-	int		c;
-
-	t1 = (char*)s1;
-	t2 = (char*)s2;
-	i = -1;
-	if (!t1 || !t2)
-		return (NULL);
-	if (!(str = malloc(sizeof(char) * ft_len(t1, t2))))
-		return (NULL);
-	while (s1[++i])
-		str[i] = t1[i];
-	c = i;
-	i = 0;
-	while (s2[i])
-	{
-		str[c] = t2[i];
-		i++;
-		c++;
-	}
-	str[c] = 0;
-	return (str);
+	dest[i + j] = '\0';
+	return (dest);
 }

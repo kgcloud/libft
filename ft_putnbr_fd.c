@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 23:21:17 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/16 23:21:21 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:44:02 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 18:44:05 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	char	n;
-
 	if (nb == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (nb < 0)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(nb * (-1), fd);
 	}
-	if (nb < 0)
+	else if (nb >= 0 && nb <= 9)
 	{
-		nb = nb * -1;
-		write(fd, "-", 1);
+		ft_putchar_fd(nb + '0', fd);
 	}
-	n = nb % 10 + '0';
-	if (nb >= 10)
+	else
 	{
-		nb = nb / 10;
-		ft_putnbr_fd(nb, fd);
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
 	}
-	write(fd, &n, 1);
 }

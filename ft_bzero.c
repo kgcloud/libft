@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnjuguna <cnjuguna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:23:20 by cnjuguna          #+#    #+#             */
-/*   Updated: 2019/10/17 16:59:52 by cnjuguna         ###   ########.fr       */
+/*   Created: 2020/11/09 18:39:33 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/09 19:06:58 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 void	ft_bzero(void *s, size_t n)
 {
 	size_t	i;
-	char	*t;
 
 	i = 0;
-	t = (char*)s;
 	while (i < n)
 	{
-		t[i] = 0;
+		((char *)s)[i] = 0;
 		i++;
 	}
 }
