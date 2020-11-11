@@ -6,7 +6,7 @@
 #    By: cloud <cloud@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/09 18:39:00 by cloud             #+#    #+#              #
-#    Updated: 2020/11/09 18:53:18 by cloud            ###   ########.fr        #
+#    Updated: 2020/11/10 22:41:28 by cloud            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,14 @@ SRC = ft_atoi.c \
     ft_substr.c \
     ft_tolower.c \
     ft_toupper.c \
+    ft_lstnew.c \
+    ft_lstadd_front.c \
+    ft_lstsize.c \
+    ft_lstlast.c \
+    ft_lstadd_back.c \
+    ft_lstdelone.c \
+    ft_lstclear.c \
+    ft_lstiter.c \
 
 NAME = libft.a
 
@@ -61,11 +69,19 @@ $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
 
+bonus : test all
+
 clean:
 	$(RM) $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME)
+
+so : clean all
+	gcc -shared -fPIC *.o -o libft.so
+
+test :
+	$(RM) ft_lst*.o
 
 re: fclean all
 
