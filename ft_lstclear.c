@@ -5,25 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 19:49:22 by cloud             #+#    #+#             */
-/*   Updated: 2020/11/10 21:43:55 by cloud            ###   ########.fr       */
+/*   Created: 2020/11/17 17:42:15 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/17 17:47:25 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*temp;
+	t_list *node;
+	t_list *next;
 
-	if (!lst || !del)
+	node = (*lst);
+	next = NULL;
+	if (!node)
 		return ;
-	temp = *lst;
-	while (temp)
+	while (node->next)
 	{
-		del(temp->content);
-		free(temp);
-		temp = temp->next;
+		next = node->next;
+		(*del)(node->content);
+		free(node);
+		node = next;
 	}
-	*lst = NULL;
+	(*del)(node->content);
+	free(node);
+	(*lst) = NULL;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 18:31:30 by cloud             #+#    #+#             */
-/*   Updated: 2020/11/10 21:43:16 by cloud            ###   ########.fr       */
+/*   Created: 2020/11/17 17:36:52 by cloud             #+#    #+#             */
+/*   Updated: 2020/11/17 17:48:28 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list *retour;
+	t_list *node;
 
-	if (!alst || !new)
-		return ;
-	retour = *alst;
-	while (*alst)
+	node = (*alst);
+	if (!(*alst))
 	{
-		retour = *alst;
-		*alst = retour->next;
+		new->next = (*alst);
+		(*alst) = new;
+		return ;
 	}
-	retour->next = new;
+	while (node->next)
+		node = node->next;
+	node->next = new;
 }

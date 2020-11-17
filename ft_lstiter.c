@@ -6,7 +6,7 @@
 /*   By: cloud <cloud@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 20:51:29 by cloud             #+#    #+#             */
-/*   Updated: 2020/11/10 21:44:08 by cloud            ###   ########.fr       */
+/*   Updated: 2020/11/17 17:11:44 by cloud            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !f)
-		return ;
 	while (lst)
 	{
-		f(lst);
+		(*f)(lst);
 		lst = lst->next;
 	}
 }
